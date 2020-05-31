@@ -1,0 +1,81 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-11">
+<H1 align="left"><img src="{% static 'Logo.png' %}" heigth="40" width="150"></H1>
+<h2>Hello, {{ user.get_full_name }}</h2>
+<p>Bellow you will find your scores, and feedback about how you did.<br></p>
+</div>
+<div class="col-1">
+	<form method="post" action="#">
+	{% csrf_token %}
+	<button type="submit" name="PDF" value="PDF" class="btn btn-success" >PDF</button>
+	</form>
+</div>
+	<div class="col-4">
+		<div class="list-group">
+		  <div class="list-group-item">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">TOEFL ITP<hr class="mt-0 mb-2"></h5>
+		      <small>{{ TOEFL_ITP }}</small>
+		    </div>
+		    <p class="mb-1"><small>{{ TOEFL_ITPC }}</small></p>
+		    <small class="text-muted">Your final score in this scale is {{ TOEFL_ITP }}.</small>
+		  </div><br>
+		  <div class="list-group-item">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">TOEFL IBT<hr class="mt-0 mb-2"></h5>
+		      <small class="text-muted">{{ TOEFL_IBT }}</small>
+		    </div>
+		    <p class="mb-1"><small>{{ TOEFL_IBTC }}</small></p>
+		    <small class="text-muted">Your final score in this scale is {{ TOEFL_IBT }}.</small>
+		  </div>
+		</div>
+	</div>	
+	<div class="col-4">
+		<div class="list-group">	  
+		  <div class="list-group-item">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">CEFR<hr class="mt-0 mb-2"></h5>
+		      <small class="text-muted">{{ CEFR }}</small>
+		    </div>
+		    <p class="mb-1"><small>{{ CEFRC }}</small></p>
+		    <small class="text-muted">Your final score in this scale is {{ CEFR }}.</small>
+		  </div><br>
+		  <div class="list-group-item">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">IELTs<hr class="mt-0 mb-2"></h5>
+		      <small>{{ IELTs }}</small>
+		    </div>
+		    <p class="mb-1"><small>{{ IELTsC }}</small></p>
+		    <small class="text-muted">Your final score in this scale is {{ IELTs }}.</small>
+		  </div>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="list-group">		  
+		  <div class="list-group-item">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">ACTFL<hr class="mt-0 mb-2"></h5>
+		      <small class="text-muted">{{ ACTFL }}</small>
+		    </div>
+		    <p class="mb-1"><small>{{ ACTFLC }}</small></p>
+		    <small class="text-muted">Your final score in this scale is {{ ACTFL }}.</small>
+		  </div>	  
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10">
+		<p>Remember that you can always send a message to <a href="mailto:support@platinumlanguage.com">support@platinumlanguage.com</a>, if you have any questions.</p>
+	</div>
+</div>
+
+
+{% endblock content %}

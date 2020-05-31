@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+
+<h3>English Level Test</h3>
+<p>Please follow the instructions to begin taking the test<br> Having some sort of headset and microphone is necessary to take the test.</p><br>
+
+<p>Press on the button to begin listening to the instructions!</p><br>
+
+		<form method="post" action="#" class="form-group" onsubmit="hello">
+		{% csrf_token %}
+
+			<button type="submit" name="save" value="save" class="btn btn-success" >ELT</button>
+	</form> 
+
+
+{% endblock %}

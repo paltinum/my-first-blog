@@ -1,0 +1,330 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+	
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'elt/apple-touch-icon.png'%}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'elt/favicon-32x32.png'%}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'elt/favicon-16x16.png'%}">
+	<link rel="manifest" href="{% static 'elt/site.webmanifest'%}">
+	<link rel="mask-icon" href="{% static 'elt/safari-pinned-tab.svg'%}" color="#5bbad5">
+	<link rel="shortcut icon" href="{% static 'elt/favicon.ico'%}">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="msapplication-config" content="{% static 'elt/browserconfig.xml'%}">
+	<meta name="theme-color" content="#ffffff">
+	<style type="text/css">
+
+                .main{
+			margin-left:100px;
+			margin-right:100px;
+			padding: 0px 0px;
+
+		}   
+				.account-img {
+			height: 125px;
+			width: 130px;
+			margin-right: 20px;
+			margin-bottom: 16px;
+		} 
+				.article-img {
+			height: 65px;
+			width: 65px;
+			margin-right: 16px;
+		} 
+
+				.account-heading {
+			font-size: 2.5rem;
+		} 
+
+				.comment {
+		    margin: 20px 0px 20px 20px;
+		}
+				.page-header {
+		    background-color: #C25100;
+		    margin-top: 0;
+		    padding: 20px 20px 20px 40px;
+		}
+
+				.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+		    color: #ffffff;
+		    font-size: 36pt;
+		    text-decoration: none;
+		}
+
+				.content {
+		    margin-left: 40px;
+		}
+
+
+				.date {
+		    color: #828282;
+		}
+
+				.save {
+		    float: right;
+		}
+
+				.post-form textarea, .post-form input {
+		    width: 100%;
+		}
+
+				.top-menu, .top-menu:hover, .top-menu:visited {
+		    color: #ffffff;
+		    float: right;
+		    font-size: 26pt;
+		    margin-right: 20px;
+		}
+
+				.post {
+		    margin-bottom: 70px;
+		}
+
+				.post h2 a, .post h2 a:visited {
+		    color: #000000;
+		}
+    </style>
+ 
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+	<title>{% block title %}Platinum Language Institute{% endblock %}</title>
+	</div>
+	<div class="sticky-top">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="/"><img src="https://lwfiles.blob.core.windows.net/platinumlanguage-public/87cc680b677e85f009bc6b7ec1993f27.png?client_id=5de95967fc128d538e1cf5c1&width=283&height=76" width="100" height="30"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	      		{% if user.is_authenticated %}
+	    			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				{% else %}
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				{% endif %}
+	      </li>
+	      <li class="nav-item">
+	      		{% if user.is_authenticated %}
+	    			<a class="nav-link" href="/ELT">ELT <span class="sr-only">(current)</span></a>
+				{% else %}
+	        		<a class="nav-link" href="/about_us">About us</a>
+				{% endif %}
+
+	      </li>
+	       <li class="nav-item">
+	       		{% if user.is_authenticated %}
+	    			<a class="nav-link" href="/Tests">Tests<span class="sr-only">(current)</span></a>
+				{% else %}
+	        		<a class="nav-link" href="/Q&A">Q&A</a>
+				{% endif %}
+	      </li>
+	       <li class="nav-item">
+	       		{% if user.is_authenticated %}
+	    			<a class="nav-link" href="/Q&A">Q&A<span class="sr-only">(current)</span></a>
+				{% else %}
+				{% endif %}
+	      </li>
+	    </ul>
+	    <div class="navbar-nav">
+              {% if user.is_authenticated %}
+               <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        Create Q&A
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="{% url 'post_new' %}">Create Q&A</a>
+		          <div class="dropdown-divider"></div>
+		          <a class="dropdown-item" href="{% url 'draft-posts' request.user.username %}">Q&A drafts</a>
+		        </div>
+      			</li>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">{{ request.user.username }}</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+	    <div id="displayName"></div> 
+	  </div>
+	</nav> 
+</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head> 
+<body>
+	<main role="main" class="container">
+      <div class="row">
+        <div class="col">
+			<h1 class="mt-2">Platinum Language Institute</h1>
+			<hr class="mt-0 mb-4">
+			{% if user.is_authenticated %}
+			{% block content %}
+			{% endblock %}
+			          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}			
+			{% else %}
+			<p>Login <a href="/login">Here</a></p>
+			{% endif %}
+        </div>
+    <div class="col-md-1">
+    </div>
+        <div class="col-md-3 h-50">
+          <div class="content-section">
+            <h4>Check out our websites</h4>
+            <p class='text-muted'>Get to know all of our organization
+              <ul class="list-group">
+              	<div class="justify-text-secondary">
+                <li class="list-group-item list-group-item-light"><u><a class="text-secondary" href="https://www.platinumlanguage.com">Official Page</a></u></li>
+                <li class="list-group-item list-group-item-light"><u><a class="text-secondary" href="https://www.online.platinumlanguage.com">Online Platform</a></u></li>
+                <li class="list-group-item list-group-item-light"><u><a class="text-secondary" href="https://sites.google.com/platinumlanguage.com/extranet?pli=1">Extranet</a></u></li>
+                <li class="list-group-item list-group-item-light"><u><a class="text-secondary" href="https://www.online.platinumlanguage.com/pages/pricing">Courses</a></u></li>
+            </div>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+
+
+			<div id="content" name="content" class="main">
+
+					</div>
+				</div>
+			</div>
+			<br><br><br><br><br><br><br>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<style>
+		/* Style all font awesome icons */
+				.fa {
+			padding: 20px;
+			font-size: 30px;
+			width: 65px;
+			height: 65px;
+			text-align:center;
+			text-decoration: none;
+			border-radius: 50%;
+		}
+
+/* Add a hover effect if you want */
+				.fa:hover {
+			opacity: 0.7;
+		}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+				.fa-facebook {
+			background: #3B5998;
+			color: white;
+		}
+
+				.fa-youtube {
+			background: #bb0000;
+			color: white;
+		}
+		 	
+				.fa-instagram {
+			background: #d6249f;
+			background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+			box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+			color: white;
+		}
+
+				.fa-skype {
+			background: #00aff0;
+			color: white;
+		}
+				.float{
+			position:fixed;
+			padding:10px;
+			width:65px;
+			height:65px;
+			text-align:center;
+			bottom:30px;
+			right:30px;
+			background-color:#25d366;
+			color:#FFF;
+			border-radius:50%;
+			font-size:30px;
+			box-shadow: 1px 1px 1px #999;
+			z-index:0;
+		}
+
+				.my-float{
+			margin-top:-50px;
+			margin-left:-10px;
+		}
+	</style>
+	<div class="bottom">
+		<div class="container-fluid">
+			<div class="card">
+				<div class="p-3 mb-2 bg-dark text-white">
+				<div class="card-header">Platinum Language Institute
+				</div>
+			<div class="row">
+		<div class="col-3">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14005.803613380838!2d-106.1191357!3d28.6462147!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x70975066e23a054b!2sPlatinum%20Language%20Institute!5e0!3m2!1sen!2smx!4v1588891947804!5m2!1sen!2smx" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+	<div class="col-1"></div>
+		<div class="col-3">
+			<p><b>Visit us at:</b><br>
+		    Avenida Mirador 7316<br>
+		   	Campestre-Washington 31215<br>
+			Chihuahua,Chih. Mexico</p><br>
+	        <p><b>Contact us at:</b><br>
+			   614-337-1766<br>
+			   614-503-6372<br>
+			   <a href="mailto:support@platinumlanguage.com" class="link">support@platinumlanguage.com</a></p>
+		</div>
+ <div class="col-md-3">
+ 	<a class="text-secondary" href="#"><u>Work with us</u></a><br><br>
+ 	<a class="text-secondary" href="#"><u>Start your learning path</u></a><br>
+ </div>
+
+	<div class="col-1">
+			<a href="https://www.facebook.com/PlatinumLanguageInstitute/" class="fa fa-facebook"></a><br> <br><br>
+						<a href="https://www.instagram.com/platinumlanguage/" class="fa fa-instagram"></a>
+			</div>
+		<div class="col-1">
+			<a href="https://www.youtube.com/channel/UCnh3Te7XnoNPabXCC7hho2w" class="fa fa-youtube"></a><br><br><br>
+
+    	{% if user.is_authenticated %}
+    	{% else %}
+		<a href="https://api.whatsapp.com/send?phone=526143351766&text=Hey%21%20there!" class="float" target="_blank">
+		<i class="fa fa-whatsapp my-float"></i> </a>
+		{% endif %}
+		</div>
+
+		</div>
+    </div>
+    <div class="p-3 mb-2 bg-dark text-white">
+	<div class="card-footer">Copyright © 2019 platinumlanguage.com All rights reserved
+	</div></div>
+</div>
+</div>
+</footer>
+</html>

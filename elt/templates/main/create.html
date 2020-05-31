@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+	<p>Please write the code that was given to you to begin the test</p>
+	<br>
+	<form method="post" action="/ELT/" class="form-group">
+		{% csrf_token %}
+		<div class="input-group mb-3">
+	  		<div class="input-group-prepend">
+	  		<button name="save" type="submit" class="btn btn-success">TEST ID</button>
+	  		</div>
+	  		{{form.name}}
+		</div>
+	</form>
+
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}

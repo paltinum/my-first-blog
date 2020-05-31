@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+
+<h3>English Level Test</h3>
+<p>Please follow the instructions to begin taking the test<br> Having some sort of headset and microphone is necessary to take the test.</p><br>
+
+<small>Please note that you must press each button ONLY ONCE!</small> 
+
+
+
+<p>Press on the <b>Play</b> button to play the question</p><br>
+<p>Press on the <b>Record</b> button to speak your answer</p><br>
+
+		<form method="post" action="#" class="form-group">
+		{% csrf_token %}
+
+			<button id="recording" onclick="change2()" type="submit" name="MIC" value="MIC" class="btn btn-success" >Record</button>
+	</form> 	
+
+<script>
+function change() // no ';' here
+{
+    var elem = document.getElementById("testing");
+    if (elem.name=="Question") elem.value = "QA1_2";
+    else if (elem.name=="QA1_2") elem.value = "QA1_3";
+}
+function change() // no ';' here
+{
+    var elem = document.getElementById("recording");
+    if (elem.value=="MIC") elem.value = "A1_2";
+    else if (elem.value=="A1_2") elem.value = "A1_3";
+}
+</script>
+{% endblock %}

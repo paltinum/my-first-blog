@@ -1,0 +1,44 @@
+{% extends 'main/Test.html' %}
+
+
+{% block content %}
+
+
+<h3>English Level Test</h3>
+<p>Please follow the instructions to begin taking the test<br>
+Having some sort of headset and microphone is necessary to take the test.<br>
+Please press each button <b>ONLY ONCE</b> per attempt.<br>
+Make sure that you are in a quiete room without distractions for atleast 10 minutes.<br>
+
+<div class="row">
+<div class="col-md-6">
+
+
+
+		<form method="post" action="#" class="form-group">
+		{% csrf_token %}
+		<p>Press on the <b>Play</b> button to play the question</p>
+			<button id="testing" onclick="change()" type="submit" name="Question" value="Question" class="btn btn-success" >Play</button><br>
+		<p>Press on the <b>Record</b> button to speak your answer</p>
+			<button id="recording" onclick="change2()" type="submit" name="MIC" value="MIC" class="btn btn-success" >Record</button><br>
+	</form> 
+	</div>
+	<div class="col-md-5">
+		          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %} 	
+	</div></div>	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+{% endblock %}

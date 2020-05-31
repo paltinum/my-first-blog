@@ -1,0 +1,150 @@
+{% extends 'main/log.html' %}
+
+{% block content %}
+
+{% if post.published_date %}
+<div class="row">
+    <div class="col-5">
+        {{ post.published_date }}
+    </div>
+    <div class="col-4"></div>
+        {% if post.author == request.user %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16" width="14" height="16"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 011.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg></a>
+        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path></svg></a>
+        {% endif %}
+        </div>
+        <div class="row">
+    <div class="col-5">
+    </div>
+    <div class="col-4"></div>
+        <button  class="h-25 btn btn-light rounded"> Likes {{ post.likes.count }} </button><button class="h-25 btn btn-light rounded"> Dislikes {{ post.dislikes.count }}</button></div>
+
+<article class="media content-section">
+<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+<div class="post">
+<a class="mr-2" href="{% url 'user-posts' post.author.username %}"><H3>{{ post.author }}</H3></a>
+<h5>{{ post.title }}</h5>
+<p>{{ post.text|linebreaksbr }}</p>
+</div>
+</article>
+<div class="row">
+<div class="col-8">
+    </div>
+    <div class="col-4">
+        {% if user.is_authenticated %}
+<form method="post">
+{% csrf_token %}
+<button type="submit" name="like" value="like" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path fill-rule="evenodd" d="M15.98 8.17l-.97 5.95C14.84 15.5 13.13 16 12 16H5.69c-.2 0-.38-.05-.53-.14L3.72 15H2c-1.06 0-2-.94-2-2V9c0-1.06.94-2.02 2-2h2c.91 0 1.39-.45 2.39-1.55.91-1 .88-1.8.63-3.27-.08-.5.06-1 .42-1.42C7.83.29 8.42 0 9 0c1.83 0 3 3.71 3 5.01l-.02.98h2.04c1.16 0 1.95.8 1.98 1.97 0 .11-.02.21-.02.21zm-1.97-1.19h-1.99c-.7 0-1.03-.28-1.03-.97l.03-1.03c0-1.27-1.17-4-2-4-.5 0-1.08.5-1 1 .25 1.58.34 2.78-.89 4.14C6.11 7.25 5.36 8 4 8v6l1.67 1H12c.73 0 1.95-.31 2-1l.02-.02 1-6c-.03-.64-.38-1-1-1h-.01z"></path></svg> like</button>
+<button type="submit" name="dislike" value="dislike" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path fill-rule="evenodd" d="M15.98 7.83l-.97-5.95C14.84.5 13.13 0 12 0H5.69c-.2 0-.38.05-.53.14L3.72 1H2C.94 1 0 1.94 0 3v4c0 1.06.94 2.02 2 2h2c.91 0 1.39.45 2.39 1.55.91 1 .88 1.8.63 3.27-.08.5.06 1 .42 1.42.39.47.98.76 1.56.76 1.83 0 3-3.71 3-5.01l-.02-.98h2.04c1.16 0 1.95-.8 1.98-1.97 0-.11-.02-.21-.02-.21zm-1.97 1.19h-1.99c-.7 0-1.03.28-1.03.97l.03 1.03c0 1.27-1.17 4-2 4-.5 0-1.08-.5-1-1 .25-1.58.34-2.78-.89-4.14C6.11 8.75 5.36 8 4 8V2l1.67-1H12c.73 0 1.95.31 2 1l.02.02 1 6c-.03.64-.38 1-1 1h-.01z"></path></svg>dislike</button>
+</form>
+{% endif %}</div></div>
+{% else %}
+<div class="row">
+    <div class="col-5">
+    </div>
+    <div class="col-5"></div>
+        {% if post.author == request.user %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16" width="14" height="16"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 011.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg></a>
+        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path></svg></a>
+        {% endif %} 
+</div>
+{% if post.author == request.user %}
+<article class="media content-section">
+<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+<div class="post">
+<a class="mr-2" href="{% url 'user-posts' post.author.username %}"><H3>{{ post.author }}</H3></a>
+<h5>{{ post.title }}</h5>
+<p>{{ post.text|linebreaksbr }}</p>
+</div>
+</article>
+<div class="row">
+    <div class="col-10">
+    </div>
+        <div class="col-2">
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+    </div></div>
+    {% else %}
+    <p>This is somebody elses draft. Need help getting back to your page?<a href="{% url 'draft-posts' request.user.username %}"> Click here.</a></p>
+    {% endif %}
+{% endif %}
+
+
+
+{% if post.published_date %}
+<hr>
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+    <h5>New comment</h5>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg> Add comment</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add comment here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="comment" class="save btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg> Add comment</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>   
+There are {{ post.comments.count }} comments
+{% for comment in post.comments.all %}
+
+    {% if comment.approved_comment %}
+    <div class="comment">
+        <div class="date">
+            {{ comment.created_date }}
+            {% if post.author == request.user %} 
+            <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path></svg></a>
+            {% endif %}</div>
+
+            <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
+            <div class="post">
+            <a class="mr-2" href="{% url 'user-posts' post.author.username %}"><H5>{{ comment.author }}</H5></a>
+            <p>{{ comment.text|linebreaksbr }}</p>
+            </div>
+            </article>
+            </div>
+             {% endif %}
+
+    {% if not comment.approved_comment %}
+    {% if post.author == request.user %}
+        <div class="comment">
+        <div class="date">
+        {{ comment.created_date }} 
+        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"></path></svg></a>
+        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16" width="12" height="16"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg></a>
+        </div>
+        <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
+        <div class="post">
+        <a class="mr-2" href="{% url 'user-posts' post.author.username %}"><H5>{{ comment.author }}</H5></a>
+        <p>{{ comment.text|linebreaksbr }}</p>
+        </div>
+        </article>
+        </div>
+        {% endif %}
+        {% endif %}
+{% empty %}
+    <p>Comments are pending review</p>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+Available Tests
+{% endblock %}
+
+{% block content %}
+	{% for td in user.scores.all %}
+		<p><a href="/{{td.id}}">{{td.name}}</a></p>
+	{% endfor %}
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+<H1 align="left"><img src="C:\Users\luisc\OneDrive\Desktop\APP\PlatinumLanguageELT\static\Logo.png" heigth="40" width="150"></H1><br>
+<h2 align="left">Congratulations for finishing the ELT!</h2>
+<p>The following is for you to download and keep as a personal record. 
+	<br>Bellow you will find your scores and feedback.</p>
+	<h2>Hello, {{ user.get_full_name }}</h2><br>
+<p>
+		    <h5 class="mb-1">TOEFL ITP</h5><br>
+		    <small>{{ TOEFL_ITP }}</small>
+		    <p class="mb-1">{{ TOEFL_ITPC }}</p><br>
+		    <small class="text-muted">Your final score in this scale is {{ TOEFL_ITP }}.</small><br><hr class="mt-0 mb-2">
+		    <h5 class="mb-1">TOEFL IBT</h5><br>
+		    <small class="text-muted">{{ TOEFL_IBT }}</small>
+
+		    <p class="mb-1">{{ TOEFL_IBTC }}</p><br>
+		    <small class="text-muted">Your final score in this scale is {{ TOEFL_IBT }}.</small><br><hr class="mt-0 mb-2">
+
+
+		    <h5 class="mb-1">CEFR</h5><br>
+		    <small class="text-muted">{{ CEFR }}</small>
+
+		    <p class="mb-1">{{ CEFRC }}</p><br>
+		    <small class="text-muted">Your final score in this scale is {{ CEFR }}.</small><br><hr class="mt-0 mb-2">
+
+		      <h5 class="mb-1">IELTs</h5><br>
+		      <small>{{ IELTs }}</small>
+
+		    <p class="mb-1">{{ IELTsC }}</p><br>
+		    <small class="text-muted">Your final score in this scale is {{ IELTs }}.</small><br><hr class="mt-0 mb-2">
+
+		      <h5 class="mb-1">ACTFL</h5><br>
+		      <small class="text-muted">{{ ACTFL }}</small>
+
+		    <p class="mb-1">{{ ACTFLC }}</p><br>
+		    <small class="text-muted">Your final score in this scale is {{ ACTFL }}.</small><br><hr class="mt-0 mb-2">
+</p>
+</body>
+<footer>
+	<table border="0" align="center" width="100%">
+        <thead>
+            <tr>
+               	<th width="20%">Visit us at:</th>
+                <th width="20%"> </th>
+                <th width="20%"> </th>
+                <th width="20%"> </th>
+                <th width="20%">Contact us at:</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr>
+                <td>Avenida Mirador 7316</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>         614-337-1766</td>                                
+            </tr>
+            <tr>
+                <td>Campestre-Washington</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>         614-503-6372</td>  
+            </tr>
+            <tr>
+                <td>31215</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>                                
+            </tr>
+            <tr>
+                <td>Chihuahua,Chih. Mexico</td>
+                <td> </td>
+                <td> </td>
+                <td><A href="mailto:support@platinumlanguage.com" class="link">                                      support@platinumlanguage.com</A></td>
+                <td> </td>  
+            </tr>
+        </tbody>
+    </table>
+</footer>
+
+</html>

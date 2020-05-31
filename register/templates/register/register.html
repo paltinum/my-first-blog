@@ -1,0 +1,30 @@
+{% extends 'main/log.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>It seems that you are trying to access the registration page but you are already registered.<br> Would you like me to redirect you to our website?</p>
+
+	click <a href="http://www.platinumlanguage.com">here</a>
+{% else %}
+	<h3> Are you interested in taking language classes with us?</h3>
+	<p>Visit our LMS site by clicking <a href="http://www.online.platinumlanguage.com">here</a><br>
+	Register here if you would like to do the ELT</p>
+	<div class="content-section">
+		<form method="POST" class="form-group">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4"></legend>
+			{{form|crispy}}
+		</fieldset>
+			<button type="submit" class="btn btn-primary">Register</button>
+		</form>	
+			<div class="border-top pt-3">
+			<small class="text-muted">
+				Already have and account? <a class="ml-2" href="login">Sign In</a>
+			</small>
+		</div>
+	</div>
+{% endif %}
+{% endblock %}
