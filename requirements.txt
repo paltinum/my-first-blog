@@ -6,7 +6,7 @@ click==7.1.2
 DateTime==4.3
 defusedxml==0.6.0
 diff-match-patch==20181111
-Django==3.0.6
+Django==3.1.6
 django-crispy-forms==1.9.1
 django-import-export==2.1.0
 django-tinymce==3.0.2
