@@ -32,7 +32,7 @@ soupsieve==2.0.1
 SpeechRecognition==3.8.1
 sqlparse==0.3.1
 tablib==2.0.0
-urllib3==1.25.9
+urllib3==1.26.5
 webencodings==0.5.1
 xhtml2pdf==0.2.4
 xlrd==1.2.0
