@@ -19,7 +19,7 @@ jdcal==1.4.1
 MarkupPy==1.14
 odfpy==1.4.1
 openpyxl==3.0.3
-Pillow==7.1.2
+Pillow==8.2.0
 playsound==1.2.2
 PyAudio @ file:///home/Platinum/platinum.pythonanywhere.com/PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
 PyPDF2==1.26.0
