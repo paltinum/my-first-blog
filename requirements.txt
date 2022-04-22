@@ -22,7 +22,7 @@ openpyxl==3.0.3
 Pillow==7.1.2
 playsound==1.2.2
 PyAudio @ file:///home/Platinum/platinum.pythonanywhere.com/PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pytz==2020.1
 PyYAML==5.3.1
 reportlab==3.5.42
